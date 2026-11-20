@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  sprintsync-app:
+    build: .
+    container_name: sprintsync_pms
+    ports:
+      - "8001:8001"
+    volumes:
+      - ./backend/data:/app/backend/data
+    environment:
+      - DATABASE_URL=sqlite:////app/backend/data/agile_pm.db
+      - MAX_WORKER_THREADS=3
+    restart: unless-stopped
